@@ -1,0 +1,28 @@
+{
+    "name": "4geo35/privacy-policy",
+    "description": "Privacy pages",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladimir",
+            "email": "aweram-team@yandex.ru"
+        }
+    ],
+    "require": {
+        "4geo35/tailwindcss-theme": "@dev",
+        "4geo35/metable": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "GIS\\PrivacyPolicy\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GIS\\PrivacyPolicy\\PrivacyPolicyServiceProvider"
+            ]
+        }
+    }
+}
