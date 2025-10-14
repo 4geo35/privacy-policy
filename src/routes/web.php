@@ -8,7 +8,5 @@ Route::middleware(["web"])
     ->group(function () {
         $controller = config("privacy-policy.customPageWebController") ?? PageController::class;
         Route::get("/privacy-policy", [$controller, "privacy"])->name("privacy-policy");
-        Route::get("/user-agreement", function () {
-            return "user agreement";
-        })->name("user-agreement");
+        Route::get("/user-agreement", [$controller, "agreement"])->name("user-agreement");
     });

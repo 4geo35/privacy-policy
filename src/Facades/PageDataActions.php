@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string getPrivacyData()
+ * @method static string getAgreementData
  *
  * @see PageDataActionsManager
  */

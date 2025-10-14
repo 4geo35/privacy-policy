@@ -16,4 +16,11 @@ class PageController extends Controller
         $text = PageDataActions::getPrivacyData();
         return view("pp::web.pages.privacy-policy", compact('metas', 'text'));
     }
+
+    public function agreement(): View
+    {
+        $metas = MetaActions::renderByPage("user-agreement");
+        $text = PageDataActions::getAgreementData();
+        return view("pp::web.pages.user-agreement", compact('metas', 'text'));
+    }
 }

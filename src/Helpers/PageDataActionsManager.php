@@ -27,14 +27,27 @@ class PageDataActionsManager
 
         $markdown = str_replace("{email}", config("privacy-policy.email"), $markdown);
 
-        $dataStr = config("privacy-policy.data");
-        $dataArray = explode(" ; ", $dataStr);
-        $replaceString = "";
-        foreach ($dataArray as $item) {
-            if (empty($item)) { continue; }
-            $replaceString .= "\n- $item";
-        }
-        $markdown = str_replace("{data}", $replaceString, $markdown);
+        $markdown = $this->replaceData($markdown);
+
+        return Str::markdown($markdown);
+    }
+
+    public function getAgreementData(): string
+    {
+        $markdown = $this->getDataFromUrl(config("privacy-policy.agreementMarkdownUrl"), "agreement-markdown-data");
+        if (!$markdown) { return ""; }
+
+        $markdown = str_replace("{org}", config("privacy-policy.company"), $markdown);
+
+        $params = config("privacy-policy.params");
+        $replace = ! empty($params) ? ", $params" : "";
+        $markdown = str_replace("{params}", $replace, $markdown);
+
+        $markdown = str_replace("{address}", config("privacy-policy.address"), $markdown);
+
+        $markdown = str_replace("{email}", config("privacy-policy.email"), $markdown);
+
+        $markdown = $this->replaceData($markdown);
 
         return Str::markdown($markdown);
     }
@@ -54,5 +67,17 @@ class PageDataActionsManager
                 return null;
             }
         });
+    }
+
+    protected function replaceData($markdown): string
+    {
+        $dataStr = config("privacy-policy.data");
+        $dataArray = explode(" ; ", $dataStr);
+        $replaceString = "";
+        foreach ($dataArray as $item) {
+            if (empty($item)) { continue; }
+            $replaceString .= "\n- $item";
+        }
+        return str_replace("{data}", $replaceString, $markdown);
     }
 }
