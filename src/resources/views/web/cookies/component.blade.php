@@ -1,0 +1,1 @@
+<livewire:pp-cookies-notification />

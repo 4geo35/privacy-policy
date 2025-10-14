@@ -52,6 +52,20 @@ class PageDataActionsManager
         return Str::markdown($markdown);
     }
 
+    public function getCookiesData(): string
+    {
+        $markdown = $this->getDataFromUrl(config("privacy-policy.cookiesMarkdownUrl"), "cookies-markdown-data");
+        if (!$markdown) { return ""; }
+
+        $markdown = str_replace("{org}", config("privacy-policy.company"), $markdown);
+
+        $markdown = str_replace("{policy}", route("web.privacy-policy"), $markdown);
+
+        $markdown = str_replace("{app}", config("app.name"), $markdown);
+
+        return Str::markdown($markdown);
+    }
+
     protected function getDataFromUrl(string $url, string $key): ?string
     {
         return Cache::remember($key, 60*60*24, function () use ($url) {

@@ -13,7 +13,9 @@ return [
 
     "privacyMarkdownUrl" => "https://raw.githubusercontent.com/4geo35/policy-text/refs/heads/master/policy.md",
     "agreementMarkdownUrl" => "https://raw.githubusercontent.com/4geo35/policy-text/refs/heads/master/agreement.md",
+    "cookiesMarkdownUrl" => "https://raw.githubusercontent.com/4geo35/policy-text/refs/heads/master/cookies.md",
 
     "customPageWebController" => null,
     "customPageDataActionsManage" => null,
+    "customNotificationComponent" => null,
 ];
