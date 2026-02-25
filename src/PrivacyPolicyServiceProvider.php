@@ -9,17 +9,17 @@ use Livewire\Livewire;
 
 class PrivacyPolicyServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'pp');
-        $this->addLivewireComponents();
-    }
-
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/config/privacy-policy.php', 'privacy-policy');
-        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->initFacades();
+    }
+
+    public function boot(): void
+    {
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'pp');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->addLivewireComponents();
     }
 
     protected function initFacades(): void
